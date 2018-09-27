@@ -11,12 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-@RestController
+
 @ControllerAdvice
-@EnableWebMvc
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
-	@ExceptionHandler(BookNotFoundException.class)
-	public ResponseEntity<ErrorDetails> handleBookNotFoundException(BookNotFoundException ex, WebRequest request){
+	@ExceptionHandler(UserNotFoundException.class)
+	public ResponseEntity<ErrorDetails> handleUserNotFoundException(UserNotFoundException ex, WebRequest request){
 		ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),
 		        request.getDescription(false));
 		    return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
